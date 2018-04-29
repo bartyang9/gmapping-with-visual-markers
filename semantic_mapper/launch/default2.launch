@@ -1,0 +1,14 @@
+<launch>
+
+<node pkg="semantic_mapper" type="semantic_mapper_node" name="semantic_mapper_node" output="screen">
+
+<param name="prob_thres" value="0.0" />
+</node>
+<node pkg="map_server" type="map_server" name="map_server" args="$(find semantic_mapper)/maps/office.yaml" />
+
+<include file="$(find semantic_label_publisher)/launch/default.launch"/>
+
+
+<include file="$(find semantic_mapper)/launch/places/run_amcl_office.launch"/>
+
+</launch>

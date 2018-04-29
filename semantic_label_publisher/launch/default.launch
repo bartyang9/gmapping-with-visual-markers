@@ -1,0 +1,18 @@
+<launch>
+
+<node pkg="topic_tools" name="throttle" type="throttle" args="messages camera/rgb/image_raw 2.0" />
+<!--define the rate of the image input, currently 0.5, can be changed to 1/2-->
+
+<node pkg="semantic_label_publisher" type="semantic_label_publisher_node.py" name="semantic_label_publisher_node" output="screen">
+<param name="image_topic" value="/camera/rgb/image_raw_throttle"/>
+<!--param name="image_topic" value="/usb_cam/image_raw_throttle"/-->
+<param name="caffe_root" value="/home/caffe/" />
+<!--param name="MODEL_FILE_PATH" value="/home/guiabot/semantic_mapping_repo/model/deploy.prototxt" /-->
+<param name="MODEL_FILE_PATH" value="/home/bart/ros_final/src/ros-semantic-mapper/deploy.prototxt" />
+<!--param name="PRETRAINED_PATH" value="/home/guiabot/semantic_mapping_repo/model/bvlc_reference_caffenet.caffemodel" /-->
+<param name="PRETRAINED_PATH" value="/home/bart/ros_final/src/ros-semantic-mapper/places.caffemodel" />
+<param name="MEAN_FILE_PATH" value="/home/bart/ros_final/src/ros-semantic-mapper/mean.npy" />
+<param name="SUB_CAT_FILE" value="/home/bart/ros_final/src/ros-semantic-mapper/my_cats.txt" />
+</node>
+
+</launch>
