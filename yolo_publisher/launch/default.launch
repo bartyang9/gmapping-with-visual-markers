@@ -1,0 +1,16 @@
+<launch>
+
+<node pkg="topic_tools" name="throttle" type="throttle" args="messages camera/rgb/image_raw 2.0" />
+
+<node pkg="yolo_publisher" type="yolo_publisher.py" name="yolo_publisher_node" output="screen">
+<param name="image_topic" value="/camera/rgb/image_raw_throttle"/>
+<param name="caffe_root" value="/home/ji/code/clCaffe/" />
+
+<param name="MODEL_FILE_PATH" value="/home/ji/ros_ws/src/ros-semantic-mapper/ros-semantic-mapper/yolo_small_deploy.prototxt" />
+
+<param name="PRETRAINED_PATH" value="/home/ji/ros_ws/src/ros-semantic-mapper/ros-semantic-mapper/yolo_small.caffemodel" />
+
+<!-- <param name="SUB_CAT_FILE" value="/home/ji/ros_ws/src/ros-semantic-mapper/ros-semantic-mapper/my_cats.txt" /> -->
+</node>
+
+</launch>
